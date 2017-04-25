@@ -1,10 +1,17 @@
 require('babel-polyfill');
 
-import * as actions from './actions/index';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {Provider} from 'react-redux';
+
 import store from './store';
+import RepositoryList from './components/repository-list';
 
-// store.dispatch(actions.addRepository('joe'));
-// console.log(store.getState()); // Logs [{ name: 'joe', rating: null}]
-
-window.actions = actions;
-window.store = store;
+document.addEventListener('DOMContentLoaded', () =>
+    ReactDOM.render(
+        <Provider store={store}>
+            <RepositoryList />
+        </Provider>,
+        document.getElementById('app')
+    )
+);
